@@ -7,7 +7,7 @@ import CIcon from '@coreui/icons-react'
 import { AppSidebarNav } from './AppSidebarNav'
 
 import { logoNegative } from 'src/assets/brand/logo-negative'
-import  Logo from 'src/assets/brand/Hilltop Sri Lanka.svg'
+import  Logo from 'src/assets/brand/Hilltop Sri Lanka (1).svg'
 
 import { sygnet } from 'src/assets/brand/sygnet'
 
@@ -34,7 +34,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-      <CImage fluid src={Logo} />
+      <CImage fluid src={""} />
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
