@@ -34,7 +34,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-      <CImage fluid src={""} />
+      <CImage fluid src={Logo} />
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
