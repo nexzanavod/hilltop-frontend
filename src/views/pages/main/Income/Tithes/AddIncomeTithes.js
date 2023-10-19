@@ -92,7 +92,7 @@ function AddIncomeTithes() {
           console.log("Data", data)
 
           let personName = data[0].attributes.Name;
-          let personMobile = data[0].attributes.mobile || "No Contact Number";
+          let personMobile = data[0].attributes.Mobile || "No Contact Number";
 
           console.log("P", personName)
 
