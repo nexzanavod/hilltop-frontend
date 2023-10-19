@@ -37,7 +37,7 @@ function OrganizersPage() {
     <div>
       <CCard className="mb-4">
         <CCardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h5>Organizers Management</h5>
+          <h5>Programs Management</h5>
           <CButton onClick={() => navigate('/program/add/1')}>ADD NEW</CButton>
         </CCardHeader>
         <CCardBody>
