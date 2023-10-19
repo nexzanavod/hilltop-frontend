@@ -57,10 +57,17 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Tithes Details',
+    to: '/tithes',
+    icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
     name: 'Report',
     to: '/report',
     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
   },
+
   
  
 ]
