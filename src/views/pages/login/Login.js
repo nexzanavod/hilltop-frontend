@@ -12,11 +12,11 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-  CImage
+  CImage,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
-import LoginPage from "../../../assets/images/loginPage.gif"
+import CIcon from '@coreui/icons-react';
+import { cilLockLocked, cilUser } from '@coreui/icons';
+import LoginPage from '../../../assets/images/loginPage.gif';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +28,7 @@ const Login = () => {
     // Check if email and password match (This is a basic example, replace with your actual authentication logic)
     if (email === 'admin@gmail.com' && password === 'admin123') {
       // Redirect to the dashboard on successful login
-      sessionStorage.setItem("key", "110");
+      sessionStorage.setItem('key', '110');
       navigate('/dashboard');
     } else {
       setError('Invalid email or password');
@@ -45,7 +45,7 @@ const Login = () => {
                 <CCardBody>
                   <CForm>
                     <h1>Login</h1>
-                    <p className="text-medium-emphasis">Sign In to your Hilltop Dashbord</p>
+                    <p className="text-medium-emphasis">Sign In to your Hilltop Dashboard</p>
                     {error && <div className="text-danger mb-3">{error}</div>}
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
@@ -71,12 +71,16 @@ const Login = () => {
                       />
                     </CInputGroup>
                     <CRow>
-                      <CCol xs={6}>
-                        <CButton style={{  backgroundColor: '#B4DA69', border:'none' }}className="btn  px-4" onClick={handleLogin}>
+                      <CCol xs={12} md={6}>
+                        <CButton
+                          style={{ backgroundColor: '#B4DA69', border: 'none' }}
+                          className="btn px-4"
+                          onClick={handleLogin}
+                        >
                           Login
                         </CButton>
                       </CCol>
-                      <CCol xs={6} className="text-right">
+                      <CCol xs={12} md={6} className="text-right">
                         {/* <CButton color="link" className="px-0">
                           Forgot password?
                         </CButton> */}
@@ -85,17 +89,13 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white py-5" style={{ width: '44%', backgroundColor: '#B4DA69' }}>
+              <CCard className="text-white py-5" style={{ backgroundColor: '#B4DA69' }}>
                 <CCardBody className="text-center">
-                <CImage src={LoginPage} width={200} height={200} />
+                  <CImage src={LoginPage} width={200} height={200} />
                   <div>
                     <h2>Hebrews 12:14</h2>
-                    <p>
-
-                      Pursue peace with all people, and holiness, without which no one will see the Lord:
-                    </p>
-                    <Link to="/register">
-                    </Link>
+                    <p>Pursue peace with all people, and holiness, without which no one will see the Lord.</p>
+                    <Link to="/register">{/* Add a link to the registration page here */}</Link>
                   </div>
                 </CCardBody>
               </CCard>
