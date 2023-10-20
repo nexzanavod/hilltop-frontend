@@ -33,7 +33,7 @@ function AddIncomeSeeders() {
   const [wCount, setWCount] = useState(0)
   const [cCount, setCCount] = useState(0)
 
-  
+
 
   const [allData, setAllData] = useState(INITIAL_VALUE)
 
@@ -45,7 +45,7 @@ function AddIncomeSeeders() {
 
 
 
- 
+
 
 
 
@@ -65,7 +65,7 @@ function AddIncomeSeeders() {
     const month = String(dob.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
     const day = String(dob.getDate()).padStart(2, '0');
     const formattedDob = `${year}-${month}-${day}`;
-  
+
     const data = {
       Date: formattedDob,
       Programme: programName,
@@ -74,32 +74,31 @@ function AddIncomeSeeders() {
       WomenCount: wCount,
       ChildrenCount: cCount,
     };
-  
-    console.log(data);
-  
+
     try {
-      await AddPrograms(data); // Wait for the insertTithes function to complete
       setAllData(data)
       setLoading(true);
-  
-      setTimeout(() => {
-        setLoading(false);
-        setSuccessMsg(true);
-      }, 1000);
+      const response = await AddPrograms(data);
+
+      if (response.success) {
+        setSuccessMsg('Success: Data added successfully.');
+        window.location.reload();
+      } else {
+        setSuccessMsg('Error: Unable to add data.');
+      }
+
+      setLoading(false);
     } catch (error) {
-      console.error('Error adding invoice:', error);
-      // Handle error if the insertTithes function fails
+      setSuccessMsg('Error: An error occurred.');
+      console.error('Error adding tithes:', error);
+      setLoading(false);
     }
   };
-  
 
-  function resetValues() {
-
-  }
 
   return (
     <CCard className="mb-4">
-      <SuccessModal
+      {/* <SuccessModal
         open={successMsg}
         onOpen={(value) => setSuccessMsg(value)}
         title={'Successful Operation'}
@@ -107,7 +106,7 @@ function AddIncomeSeeders() {
         rediretUrl={'/income/Pdf'}
         addAnother={() => resetValues()}
         data={allData}
-      />
+      /> */}
       <CCardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
         <h5>Program</h5>
       </CCardHeader>
@@ -141,30 +140,30 @@ function AddIncomeSeeders() {
               type="text"
               id="exampleFormControlInput1"
               placeholder="Ex: Monday Program"
-              value={programName} 
+              value={programName}
               onChange={(programName) => setProgramName(programName.target.value)}
             />
 
           </CCol>
           <CRow>
-          <CCol md={4}>
-            <CFormLabel htmlFor="staticEmail" className="col-form-label">
-              Program Day
-            </CFormLabel>
-            <Select
-              type="text"
-              id="exampleFormControlInput1"
-              size="sm"
-              options={[
-                { label: 'Sunday', value: 'Sunday' },
-                { label: 'Wednesday', value: 'Wednesday' },
-                { label: 'Friday', value: 'Friday' },
-                { label: 'Saturday', value: 'Saturday' },
-                { label: 'Special Service', value: 'Special Service' }
-              ]}
-              onChange={setProgramDay}
-            ></Select>
-          </CCol>
+            <CCol md={4}>
+              <CFormLabel htmlFor="staticEmail" className="col-form-label">
+                Program Day
+              </CFormLabel>
+              <Select
+                type="text"
+                id="exampleFormControlInput1"
+                size="sm"
+                options={[
+                  { label: 'Sunday', value: 'Sunday' },
+                  { label: 'Wednesday', value: 'Wednesday' },
+                  { label: 'Friday', value: 'Friday' },
+                  { label: 'Saturday', value: 'Saturday' },
+                  { label: 'Special Service', value: 'Special Service' }
+                ]}
+                onChange={setProgramDay}
+              ></Select>
+            </CCol>
           </CRow>
         </CRow>
         <hr style={{ borderTop: '2px solid #000' }} />
@@ -173,29 +172,23 @@ function AddIncomeSeeders() {
             <CFormLabel htmlFor="staticEmail" className="col-form-label">
               Men Count
             </CFormLabel>
-            <CFormInput type="number" id="exampleFormControlInput1" placeholder="100" value={mCount}  onChange={(event) => setMCount(event.target.value)} />    
+            <CFormInput type="number" id="exampleFormControlInput1" placeholder="100" value={mCount} onChange={(event) => setMCount(event.target.value)} />
           </CCol>
           <CCol>
             <CFormLabel htmlFor="staticEmail" className="col-form-label">
-            Women Count
+              Women Count
             </CFormLabel>
-            <CFormInput type="number" id="exampleFormControlInput1" placeholder="100" value={wCount}  onChange={(event) => setWCount(event.target.value)} />
+            <CFormInput type="number" id="exampleFormControlInput1" placeholder="100" value={wCount} onChange={(event) => setWCount(event.target.value)} />
           </CCol>
         </CRow>
         <CRow className="mb-2">
           <CCol md={6}>
             <CFormLabel htmlFor="staticEmail" className="col-form-label">
-            Children Count
+              Children Count
             </CFormLabel>
             <CFormInput type="number" id="exampleFormControlInput1" placeholder="100" value={cCount} onChange={(event) => setCCount(event.target.value)} />
           </CCol>
         </CRow>
-
-
-        {/* <CAlert color="warning" className="d-flex align-items-center mt-3">
-          <CIcon icon={cilWarning} className="flex-shrink-0 me-2" width={24} height={24} />
-          <div>{alertMessage}</div>
-        </CAlert> */}
         <CRow
           className="mt-4"
           style={{ position: 'sticky', bottom: '1rem', alignSelf: 'flex-end' }}
@@ -214,6 +207,15 @@ function AddIncomeSeeders() {
             <CSpinner hidden={!loading} color="primary" />
           </CCol>
         </CRow>
+        {successMsg && (
+          <CAlert
+            color={successMsg.includes('Error') ? 'danger' : 'success'}
+            className="d-flex align-items-center mt-3"
+          >
+            <CIcon icon={cilWarning} className="flex-shrink-0 me-2" width={24} height={24} />
+            <div>{successMsg}</div>
+          </CAlert>
+        )}
       </CCardBody>
     </CCard>
   )

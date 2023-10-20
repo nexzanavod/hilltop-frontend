@@ -40,11 +40,15 @@ function OrganizersPage() {
   }, [currentPage, pageSize, sortField, sortOrder]);
 
   const handleDelete = async (programId) => {
-    const deleteSuccess = await deleteProgram(programId);
-    if (deleteSuccess) {
-      setPrograms(programs.filter((program) => program.id !== programId));
-    } else {
-      // Handle errors or show an error message to the user
+    const confirmed = window.confirm('Are you sure you want to delete this program?');
+  
+    if (confirmed) {
+      const deleteSuccess = await deleteProgram(programId);
+      if (deleteSuccess) {
+        setPrograms(programs.filter((program) => program.id !== programId));
+      } else {
+        // Handle errors or show an error message to the user
+      }
     }
   };
 
