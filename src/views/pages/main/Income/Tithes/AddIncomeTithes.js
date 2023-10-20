@@ -18,7 +18,7 @@ import DatePicker from 'rsuite/DatePicker'
 import 'rsuite/dist/rsuite.min.css'
 import { MODAL_MSGES } from 'src/common/const'
 import SuccessModal from 'src/components/Modals/SuccessModal'
-import { fetchPrograms, Tithes, searchTithes,insertTithes } from './action';
+import { fetchPrograms, Tithes, searchTithes, insertTithes } from './action';
 
 const INITIAL_VALUE = ''
 
@@ -26,14 +26,14 @@ function AddIncomeTithes() {
 
   // UseState programme Details
 
-  const [dob, setDob] = useState(INITIAL_VALUE);
+  const [dob, setDob] = useState("2023-08-16");
   const [programOptions, setProgramOptions] = useState([]);
-  const [programName, setProgramName] = useState([]);
+  const [programName, setProgramName] = useState("");
 
 
   // UseState Contact Information
   const [tithesOptions, setTithesOptions] = useState([]);
-  const [tithesNumber, setTithesNumber] = useState([]);
+  const [tithesNumber, setTithesNumber] = useState("")
   const [personName, setPersonName] = useState(INITIAL_VALUE)
   const [personMobile, setPersonMobile] = useState(INITIAL_VALUE)
 
@@ -44,11 +44,8 @@ function AddIncomeTithes() {
 
   const [allData, setAllData] = useState(INITIAL_VALUE)
 
-
-
-  const [alertMessage, setAlertMessage] = useState('Please Fill All Required Fields')
-  const [successMsg, setSuccessMsg] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [successMsg, setSuccessMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
 
 
@@ -93,8 +90,6 @@ function AddIncomeTithes() {
 
           let personName = data[0].attributes.Name;
           let personMobile = data[0].attributes.Mobile || "No Contact Number";
-
-          console.log("P", personName)
 
           setPersonName(personName);
           setPersonMobile(personMobile)
@@ -162,12 +157,25 @@ function AddIncomeTithes() {
     }, 1000)
   }
 
+  function resetValues() {
+    setDob(INITIAL_VALUE);
+    setProgramOptions([]);
+    setProgramName([]);
+    setTithesOptions([]);
+    setTithesNumber("data");
+    setPersonName(INITIAL_VALUE);
+    setPersonMobile(INITIAL_VALUE);
+    setPaymentMethod([]);
+    setPayment(INITIAL_VALUE);
+    setNote(INITIAL_VALUE);
+  };
+
   const addInvoice = async () => {
     const year = dob.getFullYear();
     const month = String(dob.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
     const day = String(dob.getDate()).padStart(2, '0');
     const formattedDob = `${year}-${month}-${day}`;
-  
+
     const data = {
       Date: formattedDob,
       PaymentCategory: 'Tithes',
@@ -179,32 +187,31 @@ function AddIncomeTithes() {
       Payment: payment,
       Note: note,
     };
-  
-    console.log(data);
-  
     try {
-      await insertTithes(data); // Wait for the insertTithes function to complete
       setAllData(data)
       setLoading(true);
-  
-      setTimeout(() => {
-        setLoading(false);
-        setSuccessMsg(true);
-      }, 1000);
+      const response = await insertTithes(data);
+
+      if (response.success) {
+        setSuccessMsg('Success: Data added successfully.');
+        window.location.reload();
+      } else {
+        setSuccessMsg('Error: Unable to add data.');
+      }
+
+      setLoading(false);
     } catch (error) {
-      console.error('Error adding invoice:', error);
-      // Handle error if the insertTithes function fails
+      setSuccessMsg('Error: An error occurred.');
+      console.error('Error adding tithes:', error);
+      setLoading(false);
     }
   };
-  
 
-  function resetValues() {
 
-  }
 
   return (
     <CCard className="mb-4">
-      <SuccessModal
+      {/* <SuccessModal
         open={successMsg}
         onOpen={(value) => setSuccessMsg(value)}
         title={'Successful Operation'}
@@ -212,7 +219,7 @@ function AddIncomeTithes() {
         rediretUrl={'/income/Pdf'}
         addAnother={() => resetValues()}
         data={allData}
-      />
+      /> */}
       <CCardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
         <h5>TITHES</h5>
       </CCardHeader>
@@ -352,7 +359,7 @@ function AddIncomeTithes() {
             <CFormLabel htmlFor="staticEmail" className="col-form-label">
               Payment (RS.)
             </CFormLabel>
-            <CFormInput type="number" id="exampleFormControlInput1" placeholder="10000" value={payment}  onChange={(event) => setPayment(event.target.value)} />
+            <CFormInput type="number" id="exampleFormControlInput1" placeholder="10000" value={payment} onChange={(event) => setPayment(event.target.value)} />
           </CCol>
         </CRow>
         <CRow className="mb-2">
@@ -387,6 +394,16 @@ function AddIncomeTithes() {
             <CSpinner hidden={!loading} color="primary" />
           </CCol>
         </CRow>
+
+        {successMsg && (
+          <CAlert
+            color={successMsg.includes('Error') ? 'danger' : 'success'}
+            className="d-flex align-items-center mt-3"
+          >
+            <CIcon icon={cilWarning} className="flex-shrink-0 me-2" width={24} height={24} />
+            <div>{successMsg}</div>
+          </CAlert>
+        )}
       </CCardBody>
     </CCard>
   )

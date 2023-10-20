@@ -12,3 +12,14 @@ export async function makeApiCall(endpoint, data) {
     throw error;
   }
 }
+
+
+export async function DeleteApi(endpoint, data) {
+  try {
+    const apiUrl = `${BASE_URL}/${endpoint}`;
+    const response = await Axios.delete(apiUrl, { params: data });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
