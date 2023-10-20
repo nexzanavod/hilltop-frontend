@@ -121,21 +121,24 @@ function AddIncomeSeeders() {
       Payment: payment,
       Note: note,
     };
-  
-    console.log(data);
-  
+
     try {
-      await addUnknownSeed(data); // Wait for the insertTithes function to complete
       setAllData(data)
       setLoading(true);
-  
-      setTimeout(() => {
-        setLoading(false);
-        setSuccessMsg(true);
-      }, 1000);
+      const response = await addUnknownSeed(data);
+
+      if (response.success) {
+        setSuccessMsg('Success: Data added successfully.');
+        window.location.reload();
+      } else {
+        setSuccessMsg('Error: Unable to add data.');
+      }
+
+      setLoading(false);
     } catch (error) {
-      console.error('Error adding invoice:', error);
-      // Handle error if the insertTithes function fails
+      setSuccessMsg('Error: An error occurred.');
+      console.error('Error adding tithes:', error);
+      setLoading(false);
     }
   };
   
@@ -146,7 +149,7 @@ function AddIncomeSeeders() {
 
   return (
     <CCard className="mb-4">
-      <SuccessModal
+      {/* <SuccessModal
         open={successMsg}
         onOpen={(value) => setSuccessMsg(value)}
         title={'Successful Operation'}
@@ -154,7 +157,7 @@ function AddIncomeSeeders() {
         rediretUrl={'/income/Pdf'}
         addAnother={() => resetValues()}
         data={allData}
-      />
+      /> */}
       <CCardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
         <h5>Add Unknown Seed</h5>
       </CCardHeader>
@@ -300,6 +303,17 @@ function AddIncomeSeeders() {
             <CSpinner hidden={!loading} color="primary" />
           </CCol>
         </CRow>
+
+        {successMsg && (
+          <CAlert
+            color={successMsg.includes('Error') ? 'danger' : 'success'}
+            className="d-flex align-items-center mt-3"
+          >
+            <CIcon icon={cilWarning} className="flex-shrink-0 me-2" width={24} height={24} />
+            <div>{successMsg}</div>
+          </CAlert>
+        )}
+        
       </CCardBody>
     </CCard>
   )

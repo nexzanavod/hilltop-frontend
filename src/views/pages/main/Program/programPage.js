@@ -41,7 +41,7 @@ function OrganizersPage() {
 
   const handleDelete = async (programId) => {
     const confirmed = window.confirm('Are you sure you want to delete this program?');
-  
+
     if (confirmed) {
       const deleteSuccess = await deleteProgram(programId);
       if (deleteSuccess) {
@@ -63,7 +63,7 @@ function OrganizersPage() {
           <div className="table-responsive">
             <CTable hover>
               <CTableHead>
-              <CTableRow>
+                <CTableRow>
                   <CTableHeaderCell scope="col">ID</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Program Name</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Date</CTableHeaderCell>
@@ -85,13 +85,13 @@ function OrganizersPage() {
                     <CTableDataCell width={150}> {program.attributes.Women_Count}</CTableDataCell>
                     <CTableDataCell width={150}> {program.attributes.Children_Count}</CTableDataCell>
                     <CTableDataCell>
-                       <CIcon
-      icon={cilTrash}
-      size="xl"
-      className="text-danger"
-      style={{ cursor: 'pointer', padding: '2px', paddingInline: '3px' }}
-      onClick={() => handleDelete(program.id)} // Handle delete on button click
-    />
+                      <CIcon
+                        icon={cilTrash}
+                        size="xl"
+                        className="text-danger"
+                        style={{ cursor: 'pointer', padding: '2px', paddingInline: '3px' }}
+                        onClick={() => handleDelete(program.id)} // Handle delete on button click
+                      />
                     </CTableDataCell>
                   </CTableRow>
                 ))}

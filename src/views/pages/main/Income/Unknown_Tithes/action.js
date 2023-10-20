@@ -39,8 +39,10 @@ export async function unknownTithes(data) {
     const response = await axios.post(apiUrl, requestData);
     // Handle success
     console.log('POST request successful:', response.data);
+    return { success: true, data: response.data };
   } catch (error) {
     // Handle error
     console.error('Error making POST request:', error);
+    return { success: false, error: error };
   }
 }
