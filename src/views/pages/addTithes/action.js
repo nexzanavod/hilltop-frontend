@@ -1,13 +1,26 @@
 import Axios from 'axios';
 
-export const fetchTithes = async () => {
+
+export const fetchTithes = async (page, pageSize, searchQuery) => {
   try {
-    const response = await Axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/titheses`);
+    // Define the filter object for the search query
+    const filter = searchQuery ? { Name: { $containsi: searchQuery } } : {};
+
+    const response = await Axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/titheses`, {
+      params: {
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize,
+        'sort':'Tithes_Id',
+        filters: filter,
+
+      },
+    });
     return response.data.data;
   } catch (error) {
     throw error;
   }
 };
+
 
 export async function addTithes(data) {
   const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/api/titheses`;
@@ -35,4 +48,6 @@ export async function addTithes(data) {
     return { success: false, error: error };
   }
 }
+
+
 
