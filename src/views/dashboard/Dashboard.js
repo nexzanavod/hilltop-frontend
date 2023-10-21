@@ -47,6 +47,8 @@ import {
 
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import DashboardWidgetComponent from './dashbord.widget.component'
+
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
@@ -174,7 +176,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <WidgetsDropdown />
+      {/* <WidgetsDropdown /> */}
+      <DashboardWidgetComponent/>
       {/* <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -304,7 +307,7 @@ const Dashboard = () => {
 
       <WidgetsBrand withCharts />
 
-      <CRow>
+      {/* <CRow>
         <CCol xs>
           <CCard className="mb-4">
             <CCardHeader>Traffic {' & '} Sales</CCardHeader>
@@ -391,7 +394,7 @@ const Dashboard = () => {
                 </CCol>
               </CRow>
 
-              <br />
+              <br /> */}
 
                 {/* <CTable align="middle" className="mb-0 border" hover responsive>
                   <CTableHead color="light">
@@ -444,10 +447,10 @@ const Dashboard = () => {
                     ))}
                   </CTableBody>
                 </CTable> */}
-            </CCardBody>
+            {/* </CCardBody>
           </CCard>
         </CCol>
-      </CRow>
+      </CRow> */}
     </>
   )
 }

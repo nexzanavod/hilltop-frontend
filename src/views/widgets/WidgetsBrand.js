@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CWidgetStatsD, CRow, CCol } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cibFacebook, cibInstagram, cibTwitter, cilCalendar } from '@coreui/icons'
+import { cibFacebook, cibInstagram, cibYoutube, cilCalendar } from '@coreui/icons'
 import { CChart } from '@coreui/react-chartjs'
 
-const WidgetsBrand = ({ withCharts }) => {
+const   WidgetsBrand = ({ withCharts }) => {
   const chartOptions = {
     elements: {
       line: {
@@ -63,8 +63,8 @@ const WidgetsBrand = ({ withCharts }) => {
           })}
           icon={<CIcon icon={cibFacebook} height={52} className="my-4 text-white" />}
           values={[
-            { title: 'Followers', value: '630 ' },
-            { title: 'Likes', value: '421' },
+            { title: 'Followers', value: '632' },
+            { title: 'Likes', value: '422' },
           ]}
           style={{
             '--cui-card-cap-bg': '#3b5998',
@@ -97,13 +97,13 @@ const WidgetsBrand = ({ withCharts }) => {
               />
             ),
           })}
-          icon={<CIcon icon={cibTwitter} height={52} className="my-4 text-white" />}
+          icon={<CIcon icon={cibYoutube} height={52} className="my-4 text-white" />}
           values={[
-            { title: 'followers', value: '0' },
-            { title: 'tweets', value: '0' },
+            { title: 'subscribers', value: '665' },
+            { title: 'videos', value: '1000' },
           ]}
           style={{
-            '--cui-card-cap-bg': '#00aced',
+            '--cui-card-cap-bg': '#cd201f',
           }}
         />
       </CCol>
