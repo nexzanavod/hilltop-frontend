@@ -4,7 +4,7 @@
 import { makeApiCall } from '../../../common/axiosCall';
 
 export function fetchPayments() {
-  return makeApiCall('payments')
+  return makeApiCall('payments?pagination[pageSize]=1000')
     .then(apiData => apiData.data)
     .catch(error => {
       console.error("Error fetching payments data:", error);
