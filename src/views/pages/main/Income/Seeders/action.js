@@ -17,7 +17,7 @@ export const fetchPrograms = async (formattedDob) => {
 
 export const Tithes = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/titheses`);
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/titheses?pagination[pageSize]=1000`);
       return response.data.data;
     } catch (error) {
       throw error;
