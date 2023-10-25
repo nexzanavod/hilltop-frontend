@@ -1,6 +1,6 @@
 import { makeApiCall } from '../../../../../../common/axiosCall'; // Adjust the path as needed
 
-export async function generateReports(data) {
+export async function generateReports(data,pageSize = 1000) {
   const startDate = data.startDate;
   const endDate = data.endDate;
   const programCategory = data.programCategory;
@@ -12,6 +12,9 @@ export async function generateReports(data) {
         { Programe_Date: { $gte: startDate } },
         { Programe_Date: { $lte: endDate } },
       ]
+    },
+    pagination: {
+      pageSize: pageSize
     }
   };
   if (programCategory !== "All") {
