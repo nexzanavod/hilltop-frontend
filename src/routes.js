@@ -13,6 +13,12 @@ const AddIncomeUnknownSeed = React.lazy(() => import('./views/pages/main/Income/
 const Report = React.lazy(() => import('./views/pages/main/report/report.All/components/report.component'))
 const Tithes = React.lazy(() => import('./views/pages/addTithes/tithesPage'))
 const AddEditTithes = React.lazy(() => import('./views/pages/addTithes/AddEditTithes'))
+const ExpensesCategories = React.lazy(() => import('./views/expense/addExpensesCatagery/Home.widget'))
+const AddEditExpenses = React.lazy(() => import('./views/expense/addExpensesCatagery/addCatagery.widget'))
+const Expenses = React.lazy(() => import('./views/expense/addExpenses/Home.widget'))
+
+
+
 
 
 
@@ -35,6 +41,13 @@ const routes = [
   { path: '/report', name: 'Reports', element:Report  },
   { path: '/tithes', name: 'Tithes', element:Tithes  },
   { path: '/tithes/:type/:add', name: 'Tithes AddEdit', element: AddEditTithes },
+  { path: '/expenses/categories', name: 'Expences Categories', element: ExpensesCategories },
+  { path: '/expenses/categories/:type/:add', name: 'Expences Categories', element: AddEditExpenses },
+  { path: '/expenses', name: 'Expences Categories', element:Expenses  },
+
+
+
+  
 
 
 

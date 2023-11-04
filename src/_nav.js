@@ -5,7 +5,8 @@ import {
   cilStar,
   cilBook,
   cilDrop,
-  cilNewspaper
+  cilNewspaper,
+  cilFilterPhoto
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -60,6 +61,24 @@ const _nav = [
     name: 'Tithes Details',
     to: '/tithes',
     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavGroup,
+    name: 'Expenses',
+    to: ' ',
+    icon: <CIcon icon={cilFilterPhoto} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Expenses Categories',
+        to: '/expenses/categories',
+      },
+      {
+        component: CNavItem,
+        name: 'Expenses',
+        to: '/expenses',
+      },
+    ],
   },
   {
     component: CNavItem,

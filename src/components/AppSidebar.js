@@ -7,7 +7,7 @@ import CIcon from '@coreui/icons-react'
 import { AppSidebarNav } from './AppSidebarNav'
 
 import { logoNegative } from 'src/assets/brand/logo-negative'
-import  Logo from 'src/assets/brand/Hilltop Sri Lanka (1).png'
+import  Logo from 'src/assets/brand/Hilltop Sri Lanka.svg'
 
 import { sygnet } from 'src/assets/brand/sygnet'
 
