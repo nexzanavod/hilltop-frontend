@@ -75,9 +75,9 @@ function OrganizersPage() {
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {programs.map((program) => (
+                {programs.map((program,index) => (
                   <CTableRow key={program.id}>
-                    <CTableDataCell>{program.id}</CTableDataCell>
+                    <CTableDataCell>{index+1}</CTableDataCell>
                     <CTableDataCell>{program.attributes.Name}</CTableDataCell>
                     <CTableDataCell width={150}> {program.attributes.Date}</CTableDataCell>
                     <CTableDataCell width={150}>{program.attributes.Day} </CTableDataCell>
