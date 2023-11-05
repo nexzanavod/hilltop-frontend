@@ -21,6 +21,7 @@ export function fetchExpenses() {
         ExpensesCategory: data.ExpensesCategory,
         PaymentMethod:  data.PaymentMethod,
         Payment: data.Payment,
+        Branch:data.Branch,
         Note: data.Note,
       }
     };

@@ -35,6 +35,7 @@ function HomeWidget() {
    //UseState Payment Information
    const [paymentMethod, setPaymentMethod] = useState([])
    const [payment, setPayment] = useState(INITIAL_VALUE)
+   const [Branch, setBranch] = useState(INITIAL_VALUE)
    const [note, setNote] = useState(INITIAL_VALUE)
  
    const [allData, setAllData] = useState(INITIAL_VALUE)
@@ -83,6 +84,7 @@ function HomeWidget() {
       ExpensesCategory: Expenses.value,
       PaymentMethod: paymentMethod.value,
       Payment: payment,
+      Branch:Branch.value,
       Note: note,
     };
     try {
@@ -174,6 +176,23 @@ function HomeWidget() {
               Payment (RS.)
             </CFormLabel>
             <CFormInput type="number" id="exampleFormControlInput1" placeholder="10000" value={payment} onChange={(event) => setPayment(event.target.value)} />
+          </CCol>
+        </CRow>
+        <CRow className="mb-2">
+          <CCol md={3}>
+            <CFormLabel htmlFor="staticEmail" className="col-form-label">
+              Branch
+            </CFormLabel>
+            <Select
+              type="text"
+              id="exampleFormControlInput1"
+              size="sm"
+              options={[
+                { label: 'Colombo', value: 'Colombo' },
+                { label: 'Negombo', value: 'Negombo' },
+              ]}
+              onChange={setBranch}
+            ></Select>
           </CCol>
         </CRow>
         <CRow className="mb-2">
