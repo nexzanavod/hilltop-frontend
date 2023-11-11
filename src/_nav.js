@@ -81,10 +81,22 @@ const _nav = [
     ],
   },
   {
-    component: CNavItem,
+    component: CNavGroup,
     name: 'Report',
-    to: '/report',
-    icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
+    to: ' ',
+    icon:  <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Income Report',
+        to: '/report/income',
+      },
+      {
+        component: CNavItem,
+        name: 'Expenses Report',
+        to: '/report/expenses',
+      },
+    ],
   },
 
   

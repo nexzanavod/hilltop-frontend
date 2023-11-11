@@ -18,7 +18,7 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const ProgramPage = React.lazy(() => import('./views/pages/main/Program/programPage'))
 const Income = React.lazy(() => import('./views/pages/main/Income/AddIncome'))
-const Report = React.lazy(() => import('./views/pages/main/report/report.All/components/report.component'))
+const Report = React.lazy(() => import('./views/pages/main/report/report.income/components/report.component'))
 
 
 
