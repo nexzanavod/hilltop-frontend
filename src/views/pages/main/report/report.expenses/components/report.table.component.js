@@ -46,6 +46,8 @@ function ReportTable({ reportData }) {
         reportItem.attributes.PaymentMethod,
         reportItem.attributes.Branch,
         reportItem.attributes.Payment,
+        reportItem.attributes.Note,
+
       ];
       csvData.push(rowData);
     });
